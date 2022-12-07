@@ -1,5 +1,4 @@
-## contents
-[java开发]（#ubuntu安装java开发环境）
+
 # ubuntu安装java开发环境
 ## 1.安装jdk
 ## 2.安装eclipse
