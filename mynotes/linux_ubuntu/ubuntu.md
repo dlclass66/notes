@@ -21,3 +21,5 @@ ctrl + shift +鼠标左键拖动文件夹到桌面
 [常用命令](../计算机基础知识/linux_ubuntu命令.md)
 # 4.使ubuntu更为易用的操作
 [操作](../计算机基础知识/操作系统.md#2使ubuntu更为易用的操作)
+# 5.ubuntu安装c/cpp开发环境
+## 1.gcc
