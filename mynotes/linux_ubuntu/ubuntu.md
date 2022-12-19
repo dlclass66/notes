@@ -28,6 +28,7 @@ ctrl + shift +鼠标左键拖动文件夹到桌面
 sudo apt install build-essential
 ```
 * 多版本共存 *使用update-alternatives*
+<http://www.linuxeye.com/Linux/alternatives.html> *update-alternatives的简单介绍*
  ```java
  ls /usr/bin/gcc*
  //查看已安装的gcc版本
