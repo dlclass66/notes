@@ -21,3 +21,21 @@ ctrl + shift +鼠标左键拖动文件夹到桌面
 [常用命令](../计算机基础知识/linux_ubuntu命令.md)
 # 4.使ubuntu更为易用的操作
 [操作](../计算机基础知识/操作系统.md#2使ubuntu更为易用的操作)
+# 5.ubuntu安装c/cpp开发环境
+## 1.gcc和g++
+* *利用build-essential安装*
+```java
+sudo apt install build-essential
+```
+* 多版本共存 *使用update-alternatives*
+<http://www.linuxeye.com/Linux/alternatives.html> *update-alternatives的简单介绍*
+ ```java
+ ls /usr/bin/gcc*
+ //查看已安装的gcc版本
+ ls /usr/bin/g++*
+ //查看已安装的g++版本 
+ sudo update-alternatives --config gcc
+ //编辑使用的gcc版本
+ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 50
+ //增加g++的可用版本并设置优先级
+ ```
