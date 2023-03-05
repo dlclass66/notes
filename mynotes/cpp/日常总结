@@ -1,0 +1,11 @@
+# 对多个变量同时赋值
+错误示范
+```cpp
+ int a, b, c = 10;//这样只会给c赋值
+```
+正确方式
+```cpp
+int a, b, c;
+a = b = c = 10;
+```
+参考链接 <https://blog.csdn.net/weixin_45483780/article/details/120324247>
