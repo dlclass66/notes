@@ -9,3 +9,49 @@ int a, b, c;
 a = b = c = 10;
 ```
 参考链接 <https://blog.csdn.net/weixin_45483780/article/details/120324247>
+# 编译预处理
+* 以#开头的命令 告诉编译器 
+* 一般编译器简单的复制粘贴
+# static 类的静态成员
+类的静态成员存储于任何对象之外 只存在于类
+# 同一个函数的反复定义
+比如头文件里面包含了一个函数的定义 在多个.cpp文件都include了这个头文件 
+解决方式 
+可以把函数声明放在头文件中而把函数定义只放在一个.cpp文件中
+# 查看占用内存的大小 sizeof
+```cpp
+sizeof (int);//以byte字节为单位
+double a = 0;
+sizeof(a);
+```
+# 头文件通常用来存放函数声明
+```cpp
+#include <iostream>
+#include "main.h"
+```
+<> 和 “”的区别
+<>一般是系统位置 “”则表示相对位置
+参考 <https://blog.csdn.net/ROseeattimoo/article/details/126225227>
+c标准库一般有.h扩展名 cpp则没有
+# #pragma
+在头文件中的预处理指令 防止同一个.cpp文件多次重复include同一个头文件
+也可用以下方式替代
+```cpp
+#ifndef _MAIN_H//大写避免重名
+#def _MAIN_H
+
+#endif
+```
+# 两个16进制位表示一个byte（8个bit）
+# math.h
+sqrt() 开方 pow()平方
+```cpp
+#include <math.h>
+double a = sqrt(4);//4开方
+double a1 = pow(4, 0.5);//4开方
+double b = pow(3, 2);//3的平方
+```
+# 函数的声明和定义
+* 函数需要先声明后使用 而定义可以在任何地方
+
+
