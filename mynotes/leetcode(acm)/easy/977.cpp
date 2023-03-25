@@ -54,3 +54,28 @@ int main() {
     }
     while (1);
 }
+
+//第二种方法 注意需要倒着放 先放绝对值大的
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+        int left = 0;
+        int right = nums.size() - 1;
+        vector<int> ans(nums.size());
+        int index = nums.size() - 1;
+        while (left < right) {
+            if (nums[left] + nums[right] > 0) {
+                ans[index] = nums[right] * nums[right];
+                right--;
+                index--;
+            }
+            else {
+                ans[index] = nums[left] * nums[left];
+                left++;
+                index--;
+            }
+        }
+        ans[0] = nums[left] * nums[left];
+        return ans;
+    }
+};

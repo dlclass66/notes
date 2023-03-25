@@ -61,6 +61,13 @@
 有些容器可能有自己的sort 也有全局的sort 此情况建议使用容器的sort
 ## 二分查找
 必须要先排序 底层是调用lower_bound(找到不影响顺序的最早插入位置)
+## copy
+参数是被拷贝对象的起始迭代器 终止迭代器 拷贝到的地方的起始迭代器 基本操作就是一个一个赋值 
+有各种特化版本
+## insert
+各个容器基本都会提供 两个参数的版本 第一个是迭代器 第二个是需要插入的内容 从迭代器所指的位置开始插入（插入完毕后的第二个参数的位置是插入的内容的起始位置）
+## hash
+一个万用的hash可以使用可变数量的模板参数处理 使用每一个参数所对应的对象对seed进行处理 最后seed就是需要的hash值 可以把hash写成一个类函数
 # 分配器
 一般不会直接使用分配器 默认使用标准分配器 底层是malloc 使用operator new 调用 没有特殊设计 会造成大量空间浪费 所以几乎不被编译器使用
 一种优化思路是减少malloc的使用 由于容器都是存储的同样大小的元素 可以一次malloc一大块内存 分割为小块小块的内存存储容器的对象 
@@ -69,9 +76,53 @@
 # 迭代器
 一般会有几个typedef（至少5个） 会重载几个运算符 ++i 和i++通过重载时有无参数区分 前者没有 后者有一个 一般后者会调用前者 注意表达式的顺序
 迭代器有五种类型（也存储在上文的其中一个typedef中）随机存取型（连续）（vector deque array） 双向型（双向链表 set map） 单向型（单向链表）（哈希set 哈希map）输入型 输出型
-## 倒转迭代器
+## 倒转迭代器（适配器）
 rbegin（）end（）的前一个
-eend（）begin（）的前一个 反向遍历
+rend（）begin（）的前一个 反向遍历
+底层是一个对应的正向迭代器
+关键是对*的重载 返回的是所对应的正向迭代器减一
+其余操作与正向迭代器正好相反
+## 插入迭代器（适配器）
+inserter（）需要两个参数 第一个是容器对象 第二个是起始迭代器
+可以对copy进行改造 使其变成插入
+原理是将copy中的=重载 通过迭代器调用容器的insert操作 实现插入
+## ostream迭代器（适配器）
+需要一个模板参数 需要输出的类型 参数两个 一个是使用的ostream对象 比如cout 另一个是分隔符(字符串)
+和copy配合使用 重载= 表示把被拷贝对象丢到cout里面（使用<<）然后再丢分隔符 * ++ --重载为无意义
+```cpp
+ostream_iterator<int> o(cout, ",");  
+```
+## istream迭代器（适配器）
+需要一个模板参数 需要输入的类型 需要一个参数 使用的istream对象 如果缺省的话就是eos（表示流结束）当创建这个迭代器的时候已经在等待读入数据了
+istream_iterator<int> eos;
+istream_iterator<int> il(cin);
+## 综合用例
+```cpp
+#include <iostream>
+#include <vector>
+#include <string>
+#include <iterator>
+#include <algorithm>
+using namespace std;
+
+int main() {
+	vector<int> vec1;
+	vector<int> vec2;
+	for (int i = 0; i < 5; i++) {
+		vec1.push_back(i);
+		vec2.push_back(10 * i);
+	}
+	auto it = vec1.begin() + 1;
+	copy(vec2.begin(), vec2.end(), inserter(vec1, it)); //注意 使用过inserter后 不能再使用it了
+	istream_iterator<int> inp(cin), eos;
+	copy(inp, eos, inserter(vec1, vec1.begin() + 1));
+	vector<int> vec3(inp, eos);
+	ostream_iterator<int> op(cout, ",");
+	copy(vec1.begin(), vec1.end(), op);
+	while (1);
+}
+
+```
 ## 5个问题和traits 
 五个问题分别为
 * 迭代器类型
@@ -94,3 +145,9 @@ typename还可以告诉编译器其后面的表达式表示的是一个类型（
 可以绑定函数 仿函数 成员函数 成员数据 后两种需要占位符1（_1 为this指针 也就是对象名）默认返回值为函数返回值 可以使用<>指定返回类型
 # 辅助函数
 对于一些不便于给出模板参数的类 可以设计一个辅助函数 使用函数的实参推导 里面返回一个所要使用的类的临时对象
+# trivial
+不重要的
+# type_traits
+是一系列的typedef 自己写的类（不用自己写typedef） 标准库中的各种类都可以使用 表现了其的一些性质 简单的通过特化偏特化实现
+# cout
+是属于ostream的一个对象 对<< 有很多重载

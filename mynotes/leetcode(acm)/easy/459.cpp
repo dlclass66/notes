@@ -40,3 +40,13 @@ int main() {
 }
 
 // 第二种方法 s能由自己的子串重复构成 那么两个s拼起来 一定含有一个s（去掉首尾字符）
+//使用了find 底层应该也是kmp算法
+class Solution {
+public:
+    bool repeatedSubstringPattern(string s) {
+        string t = s + s;
+        t.erase(t.length() - 1, 1);
+        t.erase(0, 1);
+        return t.find(s) != t.npos;
+    }
+};
