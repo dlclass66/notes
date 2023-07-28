@@ -1,7 +1,0 @@
-name：poc_xray_test_yaml
-assets：
-- '">\'><script>alert(document.domain)</script>"'
-
-string = '">\'<script>alert(document.domain)</script>"'
-hex_string = ''.join([hex(ord(c))[2:] for c in string])
-print(hex_string)
