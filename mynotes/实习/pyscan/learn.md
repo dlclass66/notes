@@ -49,3 +49,7 @@ vulcheck_task_monitor 这个函数会解析文件内容 调用函数执行任务
 # 待完善部分
 
 增加一个进度条显示功能
+
+# 遭遇的问题
+
+## nuclei不会打印状态到stdout
