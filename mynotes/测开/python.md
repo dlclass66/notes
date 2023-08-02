@@ -24,5 +24,24 @@ class Logger(object):
         pass
 sys.stdout() = Logger()
 ```
-
 新建了一个类 
+
+# 多线程threading相关
+
+## 使用
+
+```python
+import threading
+def test
+    #do test
+t1 = threading.Thread(target = test)
+t1.start()
+# 开启了一个运行test函数的线程 注意这里target没有（）
+```
+
+## 停止线程
+
+如果是无线循环类可以使用一个共享的布尔值 比如threading.Thread.Event()
+
+# requests库
+
