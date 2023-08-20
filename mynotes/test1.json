@@ -1,0 +1,10 @@
+{
+	"task_id":"1",
+	"scanner_id":"1",
+	"args":"0",
+	"target":"192.168.132.129",
+    "attacker":"172.25.231.39",
+    "port":"5555",
+    "post":"getuid,getpid",
+    "explist":["windows/smb/ms17_010_eternalblue"]
+}

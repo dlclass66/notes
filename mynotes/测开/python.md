@@ -24,7 +24,7 @@ class Logger(object):
         pass
 sys.stdout() = Logger()
 ```
-新建了一个类 
+新建了一个类
 
 # 多线程threading相关
 
@@ -44,4 +44,6 @@ t1.start()
 如果是无线循环类可以使用一个共享的布尔值 比如threading.Thread.Event()
 
 # requests库
+
+可以执行网络请求
 

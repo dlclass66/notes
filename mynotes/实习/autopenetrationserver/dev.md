@@ -1,0 +1,15 @@
+
+# 基本需求
+
+增加一个nuc指定模板的功能
+
+# 基本假设
+
+使用现有的poc 以cve编号作为索引
+
+# 需要的修改
+
+表autopenetration_task_main_config根据main_task_id找到对应的主任务中有plugin_choose这个字段 值为3表示使用自定义poc
+使用poc_conf字段存放需要使用的pocid 每个id用空格隔开（对应表autopenetration_plugins）中的id
+表autopenetration_plugins中的cve就是要使用的cve编号
+
