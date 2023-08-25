@@ -4,7 +4,7 @@
 using namespace std;
 int main() {
 	string a = "sdsdsd";
-	size_t b = a.find(" ");
-	cout << (b == string::npos);
-	while (1);
+
+	printf("%s\n", a.c_str());
+	//while (1);
 }
