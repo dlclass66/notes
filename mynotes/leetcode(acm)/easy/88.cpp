@@ -51,6 +51,7 @@ int main() {
     }
     int n = 0;
     cin >> n;
+    nums1.resize(m + n);
     Solution().merge(nums1, m, nums2, n);
     for (int k : nums1) {
         cout << k << " ";
